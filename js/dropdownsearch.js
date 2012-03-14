@@ -15,7 +15,7 @@ setTimeout(function(){
       qfTextField = "qfTextField" + selectName,
       $qfTextField;
    console.log(selectedIndex);
-  if($obj.children().length > 12){
+  if($obj.children().length > 12 && !$obj.attr("multiple")){
    $obj.hide();
    $('<span><input name="' + qfTextField + '" id="' + qfTextField + '" type="text" value="' + searchTerms[selectedIndex] + '" /><img src="http://dropdown-search.googlecode.com/svn/images/arrow_down_left_sm.png" /></span>').insertAfter(this);
    $qfTextField = $("#" + qfTextField);
