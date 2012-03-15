@@ -1,6 +1,5 @@
-$.getScript('http://dropdown-search.googlecode.com/svn/js/jquery.autocomplete.js');
-$("head").append('<link rel="stylesheet" type="text/css" href="http://dropdown-search.googlecode.com/svn/styles/dropdown.css">');
-setTimeout(function(){
+$.getScript('http://dropdown-search.googlecode.com/svn/js/jquery.autocomplete.js', function(){
+ $("head").append('<link rel="stylesheet" type="text/css" href="http://dropdown-search.googlecode.com/svn/styles/dropdown.css">');
  $('select:visible').each(function(e){
   var $obj = $(this),
       selectName = $obj.attr("name"),
@@ -15,12 +14,24 @@ setTimeout(function(){
    $('<span><input name="' + qfTextField + '" id="' + qfTextField + '" type="text" value="' + searchTerms[selectedIndex] + '" /><img src="http://dropdown-search.googlecode.com/svn/images/arrow_down_left_sm.png" /></span>').insertAfter(this);
    $qfTextField = $("#" + qfTextField);
    $qfTextField
+   .bind("click", function(){
+    $(this)
+     .data("prevValue", $(this).val() || $(this).data("prevValue"))
+     .val("");
+   })
+   .focusout(function(){
+    $(this).val($(this).val() || $(this).data("prevValue") || "");
+   })
    .next("img")
     .css({height: $obj.outerHeight(),
           position: "relative",
           "vertical-align": "middle"})
     .bind("click", function(){
-     $qfTextField.focus().val('').click();
+     $qfTextField
+      .data("prevValue", $qfTextField.val() || $qfTextField.data("prevValue"))
+      .focus()
+      .val('')
+      .click();
      setTimeout(function(){
       $qfTextField.click();
      }, 100);
@@ -47,4 +58,4 @@ setTimeout(function(){
    });
   }
  });
-},600);
+});

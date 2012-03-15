@@ -19,12 +19,24 @@ $.getScript('http://dropdown-search.googlecode.com/svn/js/jquery.autocomplete.js
    $('<span><input name="' + qfTextField + '" id="' + qfTextField + '" type="text" value="' + searchTerms[selectedIndex] + '" /><img src="http://dropdown-search.googlecode.com/svn/images/arrow_down_left_sm.png" /></span>').insertAfter(this);
    $qfTextField = $("#" + qfTextField);
    $qfTextField
+   .bind("click", function(){
+    $(this)
+     .data("prevValue", $(this).val() || $(this).data("prevValue"))
+     .val("");
+   })
+   .focusout(function(){
+    $(this).val($(this).val() || $(this).data("prevValue") || "");
+   })
    .next("img")
     .css({height: $obj.outerHeight(),
           position: "relative",
           "vertical-align": "middle"})
     .bind("click", function(){
-     $qfTextField.focus().val('').click();
+     $qfTextField
+      .data("prevValue", $qfTextField.val() || $qfTextField.data("prevValue"))
+      .focus()
+      .val('')
+      .click();
      setTimeout(function(){
       $qfTextField.click();
      }, 100);
