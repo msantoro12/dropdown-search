@@ -34,7 +34,7 @@ setTimeout(function(){
     .querycomplete(searchTerms,
                    {matchCase: false,
                     matchContains: true,
-                    width: $obj.width(),
+                    width: $obj.width() + 2,
                     max: 10000,
                     selectFirst: false,
                     scroll: true,
