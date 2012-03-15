@@ -3,11 +3,8 @@ javascript:void(function(){
  s.src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
  document.getElementsByTagName('head')[0].appendChild(s);
 }());
-setTimeout(function(){
 $.getScript('http://dropdown-search.googlecode.com/svn/js/jquery.autocomplete.js');
-$("head").append('<link rel="stylesheet" type="text/css" href="http://dropdown-search.googlecode.com/svn/styles/dropdown.css">');
-},300);
-setTimeout(function(){
+$("head").append('<link rel="stylesheet" type="text/css" href="http://dropdown-search.googlecode.com/svn/styles/dropdown.css">', function(){
  $('select:visible').each(function(e){
   var $obj = $(this),
       selectName = $obj.attr("name"),
@@ -54,4 +51,4 @@ setTimeout(function(){
    });
   }
  });
-},600);
+});
