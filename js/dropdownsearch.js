@@ -5,7 +5,7 @@ javascript:void(function(){
 }());
 $.getScript('//dropdown-search.googlecode.com/svn/js/jquery.autocomplete.js', function(){
  $("head").append('<link rel="stylesheet" type="text/css" href="http://dropdown-search.googlecode.com/svn/styles/dropdown.css">');
- $('select:visible').each(function(e){
+ $('select').delegate(":visible", "load", function(e){
   var $obj = $(this),
       selectName = $obj.attr("name"),
       searchTerms = $obj.children().map(function() {return $(this).html();}).get(),
