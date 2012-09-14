@@ -106,36 +106,37 @@ function acBindings(){
     })
     .next("img")
     .bind({
-      click: function(event){
-       $obj
-        .data("prevValue", $obj.val() || $obj.data("prevValue"))
-        .focus()
-        .val('')
-        .click();
-       setTimeout(function(){
-        $obj.click();
-       }, 100);
-      },
-      contextmenu: function(event){
-       $('#deactSearchMenu')
-        .css({
-         top: event.pageY+'px',
-         left: event.pageX+'px'
-        })
-        .data('refr', $(this))
-        .show();
-        return false;
-      }
+     click: function(event){
+      $obj
+       .data("prevValue", $obj.val() || $obj.data("prevValue"))
+       .focus()
+       .val('')
+       .click();
+      setTimeout(function(){
+       $obj.click();
+      }, 100);
+     },
+     contextmenu: function(event){
+      $('#deactSearchMenu')
+       .css({
+        top: event.pageY+'px',
+        left: event.pageX+'px'
+       })
+       .data('refr', $(this))
+       .show();
+       return false;
+     }
      })
    .end()
-   .querycomplete($obj.data("searchterms").split(","),
-                  {matchCase: false,
-                   matchContains: true,
-                   width: $selObj.width() + 2,
-                   max: 10000,
-                   selectFirst: false,
-                   scroll: true,
-                   minChars: 0})
+   .querycomplete(
+    $obj.data("searchterms").split(","),
+    {matchCase: false,
+     matchContains: true,
+     width: $selObj.width() + 2,
+     max: 10000,
+     selectFirst: false,
+     scroll: true,
+     minChars: 0})
    .result(function(event, data, formatted){
     if(data){
      $selObj.val($selObj.find("option:contains(" + data + ")").val());
