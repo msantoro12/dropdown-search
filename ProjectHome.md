@@ -1,0 +1,1 @@
+jQuery plugin/extension to turn select boxes into searchable fields
